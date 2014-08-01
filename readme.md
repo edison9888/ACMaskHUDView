@@ -90,7 +90,8 @@ self.maskHUDView.delegate = self;
 
 * Rotation support
 
-No need to do anything, it will fit CGRect automatically.
+
+    No need to do anything, it will fit CGRect automatically.
 
 
 
