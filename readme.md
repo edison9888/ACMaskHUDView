@@ -5,8 +5,10 @@ A simply HUDView
 
 ## Installing
 
-    Drag ACMaskHUDView folder into your project. 
-	
+```
+Drag ACMaskHUDView folder into your project. 
+```
+
 ```objective-c
 #import "ACMaskHUDView.h  
 ```
@@ -58,7 +60,6 @@ self.maskHUDView.delegate = self;
 <img src="https://github.com/albertgh/ACMaskHUDView/raw/master/screenshot/refresh_hud.png"/>
 
 
-
 * NoticeHUD
 
 ```objective-c
@@ -68,7 +69,6 @@ self.maskHUDView.delegate = self;
                                andDetailText:@"Please check your network"];
 ```
 <img src="https://github.com/albertgh/ACMaskHUDView/raw/master/screenshot/notice_hud.png"/>
-
 
 
 * Hide HUD
@@ -88,11 +88,12 @@ self.maskHUDView.delegate = self;
 [self.maskHUDView showRefreshHUDWithLabelText:@"Loading error, please try again."];
 ```
 
+
 * Rotation support
 
-
-    No need to do anything, it will fit CGRect automatically.
-
+```
+No need to do anything, it will fit CGRect automatically.
+```
 
 
 #### Requirements
