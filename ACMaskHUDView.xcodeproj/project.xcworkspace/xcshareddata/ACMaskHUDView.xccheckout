@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C3B7EFE0-CB4A-49E0-B667-41D6398EA15F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ACMaskHUDView</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DDC73513-19DA-41C7-874E-1ECFE9FF492D</key>
+		<string>https://github.com/albertgh/ACMaskHUDView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ACMaskHUDView.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DDC73513-19DA-41C7-874E-1ECFE9FF492D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/albertgh/ACMaskHUDView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DDC73513-19DA-41C7-874E-1ECFE9FF492D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DDC73513-19DA-41C7-874E-1ECFE9FF492D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ACMaskHUDView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -24,12 +24,12 @@
 
 - (void)rightBarButtonClicked:(UIButton *)sender
 {
-    [self.maskHUDView showActivityIndicatorHUDWithLabelText:@"数据加载中"];
+    [self.maskHUDView showActivityIndicatorHUDWithLabelText:@"loading"];
     
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self.maskHUDView showRefreshHUDWithLabelText:@"刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊刷新啊啊啊啊测试内容输入啊啊啊啊"];
+        [self.maskHUDView showRefreshHUDWithLabelText:@"Unexpected error \n Please try again"];
         
     });
 }
@@ -52,20 +52,20 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"测试"
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"test"
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(rightBarButtonClicked:)];
     
     
     //-- test
-    UILabel *testShow = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, 280, 50)];
-    testShow.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    testShow.backgroundColor = [UIColor grayColor];
-    testShow.text = @"加载完成前被遮挡的内容";
-    testShow.textAlignment = NSTextAlignmentCenter;
+    UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, 280, 50)];
+    testLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    testLabel.backgroundColor = [UIColor grayColor];
+    testLabel.text = @"Test Label";
+    testLabel.textAlignment = NSTextAlignmentCenter;
     
-    [self.view addSubview:testShow];
+    [self.view addSubview:testLabel];
     
     
     
@@ -93,14 +93,14 @@
 
 - (void)refreshButtondidTap
 {
-    [self.maskHUDView showNoticeHUDWithTitleText:@"没有网络测试显示字符串长度换行什么的"
-                                   andDetailText:@"请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，请检查 wifi 3g 什么的，"];
+    [self.maskHUDView showNoticeHUDWithTitleText:@"Cannot Connect \n to he Internet"
+                                   andDetailText:@"You must connect to a Wi-Fi \n or cellular data network. \n Please check your network."];
     
     //[self.maskHUDView showNoticeHUDWithTitleText:nil andDetailText:nil];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self.maskHUDView hideNoticeHUDWithDuration:0.4 completion:nil];
+        [self.maskHUDView hideHUDWithDuration:0.5f completion:nil];
         
     });
 }

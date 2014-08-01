@@ -22,17 +22,20 @@
 
 - (void)showActivityIndicatorHUD;
 - (void)showActivityIndicatorHUDWithLabelText:(NSString *)string;
-- (void)hideActivityIndicatorHUD;
-- (void)hideActivityIndicatorHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
+//- (void)hideActivityIndicatorHUD;
+//- (void)hideActivityIndicatorHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
 
 - (void)showRefreshHUD;
 - (void)showRefreshHUDWithLabelText:(NSString *)string;
-- (void)hideRefreshHUD;
-- (void)hideRefreshHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
+//- (void)hideRefreshHUD;
+//- (void)hideRefreshHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
 
 - (void)showNoticeHUDWithTitleText:(NSString *)titleString andDetailText:(NSString *)detailString;
-- (void)hideNoticeHUD;
-- (void)hideNoticeHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
+//- (void)hideNoticeHUD;
+//- (void)hideNoticeHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
+
+- (void)hideHUD;
+- (void)hideHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;
 
 - (void)willChangeOrientation;
 

@@ -24,7 +24,7 @@
 #define kACMaskHUDViewActivityIndicatorLabel_font               [UIFont boldSystemFontOfSize:18.0f]
 
 
-#define kACMaskHUDViewRefreshButtonText                         @"刷新"
+#define kACMaskHUDViewRefreshButtonText                         @"Refresh"
 #define kACMaskHUDViewRefreshButtonTextActionColor              \
 [UIColor colorWithRed:   0 / 255.f green: 122 / 255.f blue: 255 / 255.f alpha:1.f]
 #define kACMaskHUDViewRefreshButtonTextHighlightedColor         \
@@ -32,10 +32,10 @@
 #define kACMaskHUDViewRefreshLabel_font                         [UIFont boldSystemFontOfSize:22.0f]
 #define kACMaskHUDViewRefreshButton_w                           180.0f
 #define kACMaskHUDViewRefreshButton_h                           40.0f
-#define kACMaskHUDViewRefresh_gap                               12.0f
+#define kACMaskHUDViewRefresh_gap                               16.0f
 #define kACMaskHUDViewRefreshLabel_max_w                        300.0f
 #define kACMaskHUDViewRefreshLabel_max_h                        \
-(200.f - kACMaskHUDViewRefreshButton_h - kACMaskHUDViewRefresh_gap)
+(210.f - kACMaskHUDViewRefreshButton_h - kACMaskHUDViewRefresh_gap)
 
 
 #define kACMaskHUDViewNoticeTitleLabel_font                     [UIFont boldSystemFontOfSize:36.0f]
@@ -70,6 +70,30 @@
 
 
 @implementation ACMaskHUDView
+
+#pragma mark - Hide whatever is showing
+
+- (void)hideHUD
+{
+    [self hideHUDWithDuration:0.0f completion:nil];
+}
+
+- (void)hideHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
+{
+    if (self.isShowingActivityIndicatorHUD)
+    {
+        [self hideActivityIndicatorElement];
+    }
+    else if (self.isShowingRefreshHUD)
+    {
+        [self hideRefreshHUDElement];
+    }
+    else if (self.isShowingNoticeHUD)
+    {
+        [self hideNoticeHUDElement];
+    }
+    [self hideSelfWithDuration:duration completion:completion];
+}
 
 #pragma mark - Hide Self Animation
 
@@ -540,7 +564,6 @@
     [self.refreshButton setTitleColor:kACMaskHUDViewRefreshButtonTextHighlightedColor forState:UIControlStateHighlighted];
     [self.refreshButton setTitle:kACMaskHUDViewRefreshButtonText forState:UIControlStateNormal];
     
-    
     // border
     self.refreshButton.layer.cornerRadius = 6;
     self.refreshButton.layer.borderWidth = 1;
@@ -554,7 +577,6 @@
     [self.refreshButton addTarget:self
                            action:@selector(refreshButtonBorderColorNormal)
                  forControlEvents:UIControlEventTouchUpOutside];
-    
     
     // action
     [self.refreshButton addTarget:self action:@selector(refreshButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
