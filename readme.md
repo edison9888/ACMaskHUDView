@@ -19,7 +19,7 @@ Drag ACMaskHUDView folder into your project.
 * Initialization
 
 ```objective-c
-//set delegate to your class
+// set delegate to your class
 @interface YourViewController () <ACMaskHUDViewDelegate>
 
 // add to your view
@@ -65,8 +65,8 @@ self.maskHUDView.delegate = self;
 ```objective-c
 // Show NoticeHUD with title and detail string, or title only or detail only.
 // If both text string is nil, will simply show a @"!" at center.
-[self.maskHUDView showNoticeHUDWithTitleText:@"No network"
-                               andDetailText:@"Please check your network"];
+[self.maskHUDView showNoticeHUDWithTitleText:@"your notice title"
+                               andDetailText:@"your notice detail"];
 ```
 <img src="https://github.com/albertgh/ACMaskHUDView/raw/master/screenshot/notice_hud.png"/>
 
@@ -78,7 +78,7 @@ self.maskHUDView.delegate = self;
 [self.maskHUDView hideHUD];
 
 // Hide with a duration time to fadeout and with or without a completion block 
-[self.maskHUDView hideHUDWithDuration:0.4 completion:nil];
+[self.maskHUDView hideHUDWithDuration:0.5f completion:nil];
 
 // Especially notice this, if you want to show another HUD when you are already showing one, 
 // just call show function, no need to call hide function befroe.
