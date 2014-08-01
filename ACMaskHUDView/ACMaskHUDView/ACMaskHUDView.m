@@ -71,6 +71,7 @@
 
 @implementation ACMaskHUDView
 
+
 #pragma mark - Hide whatever is showing
 
 - (void)hideHUD
@@ -99,6 +100,8 @@
 
 - (void)hideSelfWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
 {
+    [self removeNotificationObserver];
+    
     [UIView animateWithDuration:duration animations:^{
         self.alpha = 0.0f;
     } completion:^(BOOL finished) {
@@ -118,6 +121,8 @@
 
 - (void)showActivityIndicatorHUDWithLabelText:(NSString *)string
 {
+    [self addNotificationObserver];
+    
     // hide others first
     if (self.isShowingRefreshHUD)
     {
@@ -192,17 +197,6 @@
 
 #pragma mark - ActivityIndicatorHUD hide func
 
-- (void)hideActivityIndicatorHUD
-{
-    [self hideActivityIndicatorHUDWithDuration:0.0f completion:nil];
-}
-
-- (void)hideActivityIndicatorHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
-{
-    [self hideActivityIndicatorElement];
-    [self hideSelfWithDuration:duration completion:completion];
-}
-
 - (void)hideActivityIndicatorElement
 {
     [self.activityIndicatorView stopAnimating];
@@ -220,6 +214,8 @@
 
 - (void)showRefreshHUDWithLabelText:(NSString *)string
 {
+    [self addNotificationObserver];
+    
     // hide others first
     if (self.isShowingActivityIndicatorHUD)
     {
@@ -285,17 +281,6 @@
 
 #pragma mark - RefreshHUD hide func
 
-- (void)hideRefreshHUD
-{
-    [self hideRefreshHUDWithDuration:0.0f completion:nil];
-}
-
-- (void)hideRefreshHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
-{
-    [self hideRefreshHUDElement];
-    [self hideSelfWithDuration:duration completion:completion];
-}
-
 - (void)hideRefreshHUDElement
 {
     self.refreshLabel.hidden = YES;
@@ -307,6 +292,8 @@
 
 - (void)showNoticeHUDWithTitleText:(NSString *)titleString andDetailText:(NSString *)detailString
 {
+    [self addNotificationObserver];
+    
     // hide others first
     if (self.isShowingActivityIndicatorHUD)
     {
@@ -432,17 +419,6 @@
 
 #pragma mark - NoticeHUD hide func
 
-- (void)hideNoticeHUD
-{
-    [self hideNoticeHUDWithDuration:0.0f completion:nil];
-}
-
-- (void)hideNoticeHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
-{
-    [self hideNoticeHUDElement];
-    [self hideSelfWithDuration:duration completion:completion];
-}
-
 - (void)hideNoticeHUDElement
 {
     self.noticeTitleLabel.hidden = YES;
@@ -453,7 +429,7 @@
 
 #pragma mark - Orientation func
 
-- (void)willChangeOrientation
+- (void)orientationDidChange:(NSNotification*)notification
 {
     if (self.isShowingActivityIndicatorHUD)
     {
@@ -467,6 +443,29 @@
     {
         [self setNoticeHUDWithTitleText:self.noticeTitleLabelString andDetailText:self.noticeDetailLabelString];
     }
+}
+
+#pragma mark - NSNotificationCenter Register
+
+- (void)addNotificationObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationDidChange:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+- (void)removeNotificationObserver
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - dealloc
+
+-(void)dealloc
+{
+    [self removeNotificationObserver];
 }
 
 #pragma mark - Init func

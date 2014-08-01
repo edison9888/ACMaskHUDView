@@ -83,11 +83,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-// support interface rotation
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self.maskHUDView willChangeOrientation];
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+//{
+//    return YES;
+//}
 
 #pragma mark - ACMaskHUDViewDelegate
 
