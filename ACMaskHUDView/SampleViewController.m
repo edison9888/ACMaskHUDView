@@ -93,7 +93,7 @@
 
 - (void)refreshButtondidTap
 {
-    [self.maskHUDView showNoticeHUDWithTitleText:@"Cannot Connect \n to he Internet"
+    [self.maskHUDView showNoticeHUDWithTitleText:@"Cannot Connect \n to the Internet"
                                    andDetailText:@"You must connect to a Wi-Fi \n or cellular data network. \n Please check your network."];
     
     //[self.maskHUDView showNoticeHUDWithTitleText:nil andDetailText:nil];
