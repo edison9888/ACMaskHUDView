@@ -18,12 +18,12 @@
 @property (nonatomic, assign) id<ACMaskHUDViewDelegate> delegate;
 
 - (void)showActivityIndicatorHUD;
-- (void)showActivityIndicatorHUDWithLabelText:(NSString *)string;
+- (void)showActivityIndicatorHUDWithText:(NSString *)string;
 
 - (void)showRefreshHUD;
-- (void)showRefreshHUDWithLabelText:(NSString *)string;
+- (void)showRefreshHUDWithText:(NSString *)string;
 
-- (void)showNoticeHUDWithTitleText:(NSString *)titleString andDetailText:(NSString *)detailString;
+- (void)showNoticeHUDWithTitleText:(NSString *)titleString detailText:(NSString *)detailString;
 
 - (void)hideHUD;
 - (void)hideHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion;

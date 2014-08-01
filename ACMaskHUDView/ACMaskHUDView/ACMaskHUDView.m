@@ -116,10 +116,10 @@
 
 - (void)showActivityIndicatorHUD
 {
-    [self showActivityIndicatorHUDWithLabelText:nil];
+    [self showActivityIndicatorHUDWithText:nil];
 }
 
-- (void)showActivityIndicatorHUDWithLabelText:(NSString *)string
+- (void)showActivityIndicatorHUDWithText:(NSString *)string
 {
     [self addNotificationObserver];
     
@@ -138,14 +138,14 @@
     self.alpha = 1.0f;
     
     self.activityIndicatorLabelString = string;
-    [self setActivityIndicatorHUDWithLabelText:self.activityIndicatorLabelString];
+    [self setActivityIndicatorHUDWithText:self.activityIndicatorLabelString];
     
     self.activityIndicatorLabel.hidden = NO;
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
-- (void)setActivityIndicatorHUDWithLabelText:(NSString *)string
+- (void)setActivityIndicatorHUDWithText:(NSString *)string
 {
     if (string)
     {
@@ -209,10 +209,10 @@
 
 - (void)showRefreshHUD
 {
-    [self showRefreshHUDWithLabelText:nil];
+    [self showRefreshHUDWithText:nil];
 }
 
-- (void)showRefreshHUDWithLabelText:(NSString *)string
+- (void)showRefreshHUDWithText:(NSString *)string
 {
     [self addNotificationObserver];
     
@@ -231,13 +231,13 @@
     self.alpha = 1.0f;
     
     self.refreshLabelString = string;
-    [self setRefreshHUDWithLabelText:self.refreshLabelString];
+    [self setRefreshHUDWithText:self.refreshLabelString];
     
     self.refreshLabel.hidden = NO;
     self.refreshButton.hidden = NO;
 }
 
-- (void)setRefreshHUDWithLabelText:(NSString *)string
+- (void)setRefreshHUDWithText:(NSString *)string
 {
     if (string)
     {
@@ -290,7 +290,7 @@
 
 #pragma mark - NoticeHUD show func
 
-- (void)showNoticeHUDWithTitleText:(NSString *)titleString andDetailText:(NSString *)detailString
+- (void)showNoticeHUDWithTitleText:(NSString *)titleString detailText:(NSString *)detailString
 {
     [self addNotificationObserver];
     
@@ -310,13 +310,13 @@
     
     self.noticeTitleLabelString = titleString;
     self.noticeDetailLabelString = detailString;
-    [self setNoticeHUDWithTitleText:self.noticeTitleLabelString andDetailText:self.noticeDetailLabelString];
+    [self setNoticeHUDWithTitleText:self.noticeTitleLabelString detailText:self.noticeDetailLabelString];
     
     self.noticeTitleLabel.hidden = NO;
     self.noticeDetailLabel.hidden = NO;
 }
 
-- (void)setNoticeHUDWithTitleText:(NSString *)titleString andDetailText:(NSString *)detailString
+- (void)setNoticeHUDWithTitleText:(NSString *)titleString detailText:(NSString *)detailString
 {
     if (titleString && detailString)
     {
@@ -413,7 +413,7 @@
     else
     {
         self.noticeTitleLabelString = kACMaskHUDViewNoticeEmptyText;
-        [self setNoticeHUDWithTitleText:kACMaskHUDViewNoticeEmptyText andDetailText:nil];
+        [self setNoticeHUDWithTitleText:kACMaskHUDViewNoticeEmptyText detailText:nil];
     }
 }
 
@@ -433,15 +433,15 @@
 {
     if (self.isShowingActivityIndicatorHUD)
     {
-        [self setActivityIndicatorHUDWithLabelText:self.activityIndicatorLabelString];
+        [self setActivityIndicatorHUDWithText:self.activityIndicatorLabelString];
     }
     else if (self.isShowingRefreshHUD)
     {
-        [self setRefreshHUDWithLabelText:self.refreshLabelString];
+        [self setRefreshHUDWithText:self.refreshLabelString];
     }
     else if (self.isShowingNoticeHUD)
     {
-        [self setNoticeHUDWithTitleText:self.noticeTitleLabelString andDetailText:self.noticeDetailLabelString];
+        [self setNoticeHUDWithTitleText:self.noticeTitleLabelString detailText:self.noticeDetailLabelString];
     }
 }
 

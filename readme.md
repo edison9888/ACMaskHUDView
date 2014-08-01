@@ -35,7 +35,7 @@ self.maskHUDView.delegate = self;
 [self.maskHUDView showActivityIndicatorHUD];
 
 // show with text
-[self.maskHUDView showActivityIndicatorHUDWithLabelText:@"your loading string"];
+[self.maskHUDView showActivityIndicatorHUDWithText:@"your loading string"];
 ```
 <img src="https://github.com/albertgh/ACMaskHUDView/raw/master/screenshot/loading_hud.png"/>
 
@@ -48,7 +48,7 @@ self.maskHUDView.delegate = self;
 [self.maskHUDView showRefreshHUD];
 
 // show with a describe label
-[self.maskHUDView showRefreshHUDWithLabelText:@"your refresh describe"];
+[self.maskHUDView showRefreshHUDWithText:@"your refresh describe"];
 
 #pragma mark - ACMaskHUDViewDelegate
 
@@ -66,7 +66,7 @@ self.maskHUDView.delegate = self;
 // Show NoticeHUD with title and detail string, or title only or detail only.
 // If both text string is nil, will simply show a @"!" at center.
 [self.maskHUDView showNoticeHUDWithTitleText:@"your notice title"
-                               andDetailText:@"your notice detail"];
+                                  detailText:@"your notice detail"];
 ```
 <img src="https://github.com/albertgh/ACMaskHUDView/raw/master/screenshot/notice_hud.png"/>
 
@@ -78,14 +78,18 @@ self.maskHUDView.delegate = self;
 [self.maskHUDView hideHUD];
 
 // Hide with a duration time to fadeout and with or without a completion block 
-[self.maskHUDView hideHUDWithDuration:0.5f completion:nil];
+[self.maskHUDView hideHUDWithDuration:0.4f completion:nil];
+
 
 // Especially notice this, if you want to show another HUD when you are already showing one, 
-// just call show function, no need to call hide function befroe.
-// For example, when you are requesting some data from network, you are showing the ActivityIndicatorHUD, 
-// when it failed, you want to show a RefreshHUD instead. Just call RefreshHUD show function will be enough.
-[self.maskHUDView showActivityIndicatorHUDWithLabelText:@"loading..."];
-[self.maskHUDView showRefreshHUDWithLabelText:@"Loading error, please try again."];
+// just call show function, no need to call hide function before.
+
+// For example, when you are requesting some data from network, 
+// you are showing the ActivityIndicatorHUD at first, 
+// when request failed, you want to show a RefreshHUD instead. 
+// Just call RefreshHUD show function will be enough.
+[self.maskHUDView showActivityIndicatorHUDWithText:@"loading..."];
+[self.maskHUDView showRefreshHUDWithText:@"Loading error, please try again."];
 ```
 
 

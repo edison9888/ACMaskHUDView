@@ -24,12 +24,12 @@
 
 - (void)rightBarButtonClicked:(UIButton *)sender
 {
-    [self.maskHUDView showActivityIndicatorHUDWithLabelText:@"loading"];
+    [self.maskHUDView showActivityIndicatorHUDWithText:@"loading"];
     
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self.maskHUDView showRefreshHUDWithLabelText:@"Unexpected error \n Please try again"];
+        [self.maskHUDView showRefreshHUDWithText:@"Unexpected error \n Please try again"];
         
     });
 }
@@ -93,13 +93,13 @@
 - (void)refreshButtondidTap
 {
     [self.maskHUDView showNoticeHUDWithTitleText:@"Cannot Connect \n to the Internet"
-                                   andDetailText:@"You must connect to a Wi-Fi \n or cellular data network. \n Please check your network."];
+                                      detailText:@"You must connect to a Wi-Fi \n or cellular data network. \n Please check your network."];
     
     //[self.maskHUDView showNoticeHUDWithTitleText:nil andDetailText:nil];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self.maskHUDView hideHUDWithDuration:0.5f completion:nil];
+        [self.maskHUDView hideHUDWithDuration:0.4f completion:nil];
         
     });
 }
