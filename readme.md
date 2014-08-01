@@ -94,12 +94,10 @@ No need to do anything now, it will fit CGRect automatically.
 
 ~~// If you are going to support interface rotation, Just tell ACMaskHUDView.~~
 
-~~-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration~~
+~~-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {~~
 
-~~{~~
+~~[self.maskHUDView willChangeOrientation];~~
 
-    ~~[self.maskHUDView willChangeOrientation];~~
-    
 ~~}~~
 
 
