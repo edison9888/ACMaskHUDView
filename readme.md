@@ -90,15 +90,8 @@ self.maskHUDView.delegate = self;
 
 * Rotation support
 
-No need to do anything now, it will fit CGRect automatically.
+No need to do anything, it will fit CGRect automatically.
 
-~~// If you are going to support interface rotation, Just tell ACMaskHUDView.~~
-
-~~-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {~~
-
-~~[self.maskHUDView willChangeOrientation];~~
-
-~~}~~
 
 
 #### Requirements
