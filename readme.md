@@ -90,7 +90,7 @@ No need to do anything, it will fit CGRect automatically.
 * Notice
 
 ```objective-c
-// if you want to show another HUD when you are already showing one, 
+// If you want to show another HUD when you are already showing one, 
 // just call show function, no need to call hide function before.
 
 // For example, when you are requesting some data from network, 
