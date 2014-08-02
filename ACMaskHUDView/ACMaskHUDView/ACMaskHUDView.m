@@ -15,7 +15,6 @@
 #define kACMaskHUDViewTextColor                                 \
 [UIColor colorWithRed: 153 / 255.f green: 153 / 255.f blue: 153 / 255.f alpha:1.f]
 
-#define kACMaskHUDViewHideDuration                              0.2f
 
 #define kACMaskHUDViewActivityIndicatorView_w_h                 32.0f
 #define kACMaskHUDViewActivityIndicator_gap                     4.0f
@@ -76,11 +75,7 @@
 
 - (void)hideHUD
 {
-    [self hideHUDWithDuration:0.0f completion:nil];
-}
-
-- (void)hideHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
-{
+    // hide element
     if (self.isShowingActivityIndicatorHUD)
     {
         [self hideActivityIndicatorElement];
@@ -93,24 +88,61 @@
     {
         [self hideNoticeHUDElement];
     }
-    [self hideSelfWithDuration:duration completion:completion];
+    
+    // hide self without animation
+    self.alpha = 0.0f;
+    self.hidden = YES;
+    [self removeNotificationObserver];
 }
 
-#pragma mark - Hide Self Animation
+#pragma mark - Hide with animation
 
-- (void)hideSelfWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
+- (void)hideHUDWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion
 {
-    [self removeNotificationObserver];
-    
     [UIView animateWithDuration:duration animations:^{
+        
+        if (self.isShowingActivityIndicatorHUD)
+        {
+            self.activityIndicatorView.alpha = 0.0f;
+            self.activityIndicatorLabel.alpha = 0.0f;
+        }
+        else if (self.isShowingRefreshHUD)
+        {
+            self.refreshLabel.alpha = 0.0f;
+            self.refreshButton.alpha = 0.0f;
+        }
+        else if (self.isShowingNoticeHUD)
+        {
+            self.noticeTitleLabel.alpha = 0.0f;
+            self.noticeDetailLabel.alpha = 0.0f;
+        }
+        
         self.alpha = 0.0f;
+        
     } completion:^(BOOL finished) {
+        
+        [self.activityIndicatorView stopAnimating];
+        self.activityIndicatorView.hidden = YES;
+        self.activityIndicatorLabel.hidden = YES;
+        self.isShowingActivityIndicatorHUD = NO;
+        
+        self.refreshLabel.hidden = YES;
+        self.refreshButton.hidden = YES;
+        self.isShowingRefreshHUD = NO;
+        
+        self.noticeTitleLabel.hidden = YES;
+        self.noticeDetailLabel.hidden = YES;
+        self.isShowingNoticeHUD = NO;
+        
         self.hidden = YES;
+        [self removeNotificationObserver];
+        
         if (completion) {
             completion(finished);
         }
     }];
 }
+
 
 #pragma mark - ActivityIndicatorHUD show func
 
@@ -141,16 +173,20 @@
     [self setActivityIndicatorHUDWithText:self.activityIndicatorLabelString];
     
     self.activityIndicatorLabel.hidden = NO;
+    self.activityIndicatorLabel.alpha = 1.0f;
     self.activityIndicatorView.hidden = NO;
+    self.activityIndicatorView.alpha = 1.0f;
     [self.activityIndicatorView startAnimating];
 }
 
 - (void)setActivityIndicatorHUDWithText:(NSString *)string
 {
+    self.activityIndicatorLabel.text = string;
+    
     if (string)
     {
         //-- 以 center 点为参照座标设定菊花和文字 -----------
-        self.activityIndicatorLabel.text = string;
+        
         // 计算 label 大小
         NSDictionary *activityIndicatorLabelAttribute =
         [NSDictionary dictionaryWithObjectsAndKeys:kACMaskHUDViewActivityIndicatorLabel_font, NSFontAttributeName, nil];
@@ -200,7 +236,9 @@
 - (void)hideActivityIndicatorElement
 {
     [self.activityIndicatorView stopAnimating];
+    self.activityIndicatorView.alpha = 0.0f;
     self.activityIndicatorView.hidden = YES;
+    self.activityIndicatorLabel.alpha = 0.0f;
     self.activityIndicatorLabel.hidden = YES;
     self.isShowingActivityIndicatorHUD = NO;
 }
@@ -234,15 +272,19 @@
     [self setRefreshHUDWithText:self.refreshLabelString];
     
     self.refreshLabel.hidden = NO;
+    self.refreshLabel.alpha = 1.0f;
     self.refreshButton.hidden = NO;
+    self.refreshButton.alpha = 1.0f;
 }
 
 - (void)setRefreshHUDWithText:(NSString *)string
 {
+    self.refreshLabel.text = string;
+    
     if (string)
     {
         //-- 以 center 点为参照座标设定刷新说明和按钮 -----------
-        self.refreshLabel.text = string;
+        
         // 计算 label 大小
         NSDictionary *refreshLabelAttribute =
         [NSDictionary dictionaryWithObjectsAndKeys:kACMaskHUDViewRefreshLabel_font, NSFontAttributeName, nil];
@@ -283,7 +325,9 @@
 
 - (void)hideRefreshHUDElement
 {
+    self.refreshLabel.alpha = 0.0f;
     self.refreshLabel.hidden = YES;
+    self.refreshButton.alpha = 0.0f;
     self.refreshButton.hidden = YES;
     self.isShowingRefreshHUD = NO;
 }
@@ -313,16 +357,19 @@
     [self setNoticeHUDWithTitleText:self.noticeTitleLabelString detailText:self.noticeDetailLabelString];
     
     self.noticeTitleLabel.hidden = NO;
+    self.noticeTitleLabel.alpha = 1.0f;
     self.noticeDetailLabel.hidden = NO;
+    self.noticeDetailLabel.alpha = 1.0f;
 }
 
 - (void)setNoticeHUDWithTitleText:(NSString *)titleString detailText:(NSString *)detailString
 {
+    self.noticeTitleLabel.text = titleString;
+    self.noticeDetailLabel.text = detailString;
+    
     if (titleString && detailString)
     {
         //-- 以 center 点为参照座标 -----------
-        self.noticeTitleLabel.text = titleString;
-        self.noticeDetailLabel.text = detailString;
         
         // noticeTitleLabel 大小
         NSDictionary *noticeTitleLabelAttribute =
@@ -369,7 +416,7 @@
     else if (titleString && !detailString)
     {
         // 只显示 title label
-        self.noticeTitleLabel.text = titleString;
+        //self.noticeTitleLabel.text = titleString;
         
         // noticeTitleLabel 大小
         NSDictionary *noticeTitleLabelAttribute =
@@ -391,7 +438,7 @@
     else if (!titleString && detailString)
     {
         // 只显示 detail label
-        self.noticeDetailLabel.text = detailString;
+        //self.noticeDetailLabel.text = detailString;
         
         // noticeDetailLabel 大小
         NSDictionary *noticeDetailLabelAttribute =
@@ -421,7 +468,9 @@
 
 - (void)hideNoticeHUDElement
 {
+    self.noticeTitleLabel.alpha = 0.0f;
     self.noticeTitleLabel.hidden = YES;
+    self.noticeDetailLabel.alpha = 0.0f;
     self.noticeDetailLabel.hidden = YES;
     self.isShowingNoticeHUD = NO;
 }
@@ -516,7 +565,9 @@
     self.isShowingActivityIndicatorHUD = NO;
     
     // hidden at the beginning
+    self.activityIndicatorView.alpha = 0.0f;
     self.activityIndicatorView.hidden = YES;
+    self.activityIndicatorLabel.alpha = 0.0f;
     self.activityIndicatorLabel.hidden = YES;
     
     // testing rect
@@ -585,7 +636,9 @@
     self.isShowingRefreshHUD = NO;
     
     // hidden at the beginning
+    self.refreshLabel.alpha = 0.0f;
     self.refreshLabel.hidden = YES;
+    self.refreshButton.alpha = 0.0f;
     self.refreshButton.hidden = YES;
     
     // testing rect
@@ -615,7 +668,9 @@
     self.isShowingNoticeHUD = NO;
     
     // hidden at the beginning
+    self.noticeTitleLabel.alpha = 0.0f;
     self.noticeTitleLabel.hidden = YES;
+    self.noticeDetailLabel.alpha = 0.0f;
     self.noticeDetailLabel.hidden = YES;
     
     // testing rect

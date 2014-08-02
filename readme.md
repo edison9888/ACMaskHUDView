@@ -79,9 +79,18 @@ self.maskHUDView.delegate = self;
 
 // Hide with a duration time to fadeout and with or without a completion block 
 [self.maskHUDView hideHUDWithDuration:0.4f completion:nil];
+```
 
+* Rotation support
 
-// Especially notice this, if you want to show another HUD when you are already showing one, 
+```
+No need to do anything, it will fit CGRect automatically.
+```
+
+* Notice
+
+```objective-c
+// if you want to show another HUD when you are already showing one, 
 // just call show function, no need to call hide function before.
 
 // For example, when you are requesting some data from network, 
@@ -90,13 +99,13 @@ self.maskHUDView.delegate = self;
 // Just call RefreshHUD show function will be enough.
 [self.maskHUDView showActivityIndicatorHUDWithText:@"loading..."];
 [self.maskHUDView showRefreshHUDWithText:@"Loading error, please try again."];
-```
 
-
-* Rotation support
-
-```
-No need to do anything, it will fit CGRect automatically.
+// Especially notice this, if you are using 'hideHUDWithDuration:completion:' ,
+// and you are going to show another HUD, call show function in completion block
+[self.maskHUDView hideHUDWithDuration:0.36f completion:^(BOOL finished) {
+    [self.maskHUDView showNoticeHUDWithTitleText:nil
+                                      detailText:nil];
+}];
 ```
 
 
