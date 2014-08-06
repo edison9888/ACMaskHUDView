@@ -64,7 +64,7 @@ self.maskHUDView.delegate = self;
 
 ```objective-c
 // Show NoticeHUD with title and detail string, or title only or detail only.
-// If both text string is nil, will simply show a @"!" at center.
+// If both text string are nil, will simply show a "!" at center.
 [self.maskHUDView showNoticeHUDWithTitleText:@"your notice title"
                                   detailText:@"your notice detail"];
 ```
