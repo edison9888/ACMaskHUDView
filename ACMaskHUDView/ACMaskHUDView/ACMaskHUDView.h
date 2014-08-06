@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol ACMaskHUDViewDelegate <NSObject>
-- (void)refreshButtondidTap;
+- (void)refreshButtonTapped;
 @end
 
 

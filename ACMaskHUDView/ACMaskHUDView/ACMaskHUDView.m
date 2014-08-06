@@ -590,9 +590,9 @@
 - (void)refreshButtonTapped:(UIButton *)sender
 {
     self.refreshButton.layer.borderColor = kACMaskHUDViewRefreshButtonTextActionColor.CGColor;
-    if ( nil != self.delegate && [self.delegate respondsToSelector:@selector(refreshButtondidTap)] )
+    if ( nil != self.delegate && [self.delegate respondsToSelector:@selector(refreshButtonTapped)] )
     {
-        [self.delegate refreshButtondidTap];
+        [self.delegate refreshButtonTapped];
     }
 }
 

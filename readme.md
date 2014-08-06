@@ -52,7 +52,7 @@ self.maskHUDView.delegate = self;
 
 #pragma mark - ACMaskHUDViewDelegate
 
-- (void)refreshButtondidTap
+- (void)refreshButtonTapped
 {
     // refresh action
 }
