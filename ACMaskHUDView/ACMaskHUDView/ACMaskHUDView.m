@@ -148,12 +148,13 @@
 
 - (void)showActivityIndicatorHUD
 {
+    [self.superview bringSubviewToFront:self];
     [self showActivityIndicatorHUDWithText:nil];
 }
 
 - (void)showActivityIndicatorHUDWithText:(NSString *)string
 {
-    [self addNotificationObserver];
+    [self.superview bringSubviewToFront:self];
     
     // hide others first
     if (self.isShowingRefreshHUD)
@@ -252,7 +253,7 @@
 
 - (void)showRefreshHUDWithText:(NSString *)string
 {
-    [self addNotificationObserver];
+    [self.superview bringSubviewToFront:self];
     
     // hide others first
     if (self.isShowingActivityIndicatorHUD)
@@ -336,7 +337,7 @@
 
 - (void)showNoticeHUDWithTitleText:(NSString *)titleString detailText:(NSString *)detailString
 {
-    [self addNotificationObserver];
+    [self.superview bringSubviewToFront:self];
     
     // hide others first
     if (self.isShowingActivityIndicatorHUD)
@@ -542,6 +543,7 @@
 
 - (void)createSubviews
 {
+    [self addNotificationObserver];
     [self createIndicatorHUD];
     [self createRefreshHUD];
     [self createNoticeHUD];
@@ -606,7 +608,7 @@
     self.refreshLabel.numberOfLines = 0;
     [self addSubview:self.refreshLabel];
     
-
+    
     self.refreshButton = [[UIButton alloc] init];
     self.refreshButton.frame = CGRectMake(0.0f, 0.0f, kACMaskHUDViewRefreshButton_w, kACMaskHUDViewRefreshButton_h);
     
